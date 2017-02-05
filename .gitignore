@@ -1,0 +1,8 @@
+bin
+pkg
+assets
+rpm-tmp.*
+*.exe
+rpm/BUILD/*
+rpm/SOURCES/*
+

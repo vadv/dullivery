@@ -1,0 +1,50 @@
+<script type="text/javascript">
+window.onload = function() {
+
+    CodeMirror.fromTextArea(document.getElementById("code"), {
+        lineNumbers: true,
+        matchBrackets: true,
+        theme: "solarized ligth",
+        mode: "text/x-lua",
+        indentUnit: 4, // Длина отступа в пробелах.
+        indentWithTabs: true,
+    });
+
+};
+</script>
+<div>
+    <h1>Новое задание</h1>
+    <p class="lead">Lua-скрипт, который будет запланирован на выполнение (Внимание: UTC!).</p>
+</div>
+<div class="form-group">
+    <form class="form-horizontal" action="/task/new" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <div class="col-lg-10">
+                <textarea class="form-control" s rows="20" cols="80" name="content" id="code"></textarea>
+                </p>
+            </div>
+        </div>
+        <div class='col-sm-4'>
+            <div class="form-group">
+                <div class='input-group date' id='datetimepicker'>
+                    <input type='text' name="date" class="form-control" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class='col-sm-4'>
+            <input class="btn btn-warning" type="submit" value="Создать">
+            <a role="button" class="btn btn-default" a href="/tasks">Отменить</a>
+        </div>
+    </form>
+</div>
+<script type="text/javascript">
+$("#datetimepicker").datetimepicker({
+    format: 'DD/MM/YYYY HH:00',
+//    locale: 'ru',
+//    minDate: new Date(),
+    defaultDate: new Date(),
+});
+</script>

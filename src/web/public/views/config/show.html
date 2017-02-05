@@ -1,0 +1,34 @@
+<script type="text/javascript">
+window.onload = function() {
+
+    var Code = CodeMirror.fromTextArea(document.getElementById("code"), {
+        lineNumbers: true,
+        matchBrackets: true,
+        theme: "solarized ligth",
+        mode: "text/x-lua",
+        indentUnit: 4, // Длина отступа в пробелах.
+        indentWithTabs: true,
+    });
+
+    Code.setSize(800, 800);
+
+};
+</script>
+<div>
+    <h1>Настройки</h1>
+    <p class="lead">Lua-скрипт, который будет загружаться для каждого сценария или задачи.</p>
+</div>
+<div class="form-group">
+    <form class="form-horizontal" action="/config" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <div class="col-lg-8">
+                <textarea class="form-control" s rows="20" cols="20" name="config" id="code">{{ Storage.Config }}</textarea>
+                </p>
+            </div>
+        </div>
+        <div>
+            <input class="btn btn-warning" type="submit" value="Сохранить">
+            <a role="button" class="btn btn-default" a href="/config">Отменить</a>
+        </div>
+    </form>
+</div>

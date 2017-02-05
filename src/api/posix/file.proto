@@ -1,0 +1,80 @@
+syntax = "proto3";
+
+package posix;
+
+service File {
+    rpc Find      (Filter)          returns (List)            {}
+    rpc Receive   (stream Chunk)    returns (Info)            {}
+    rpc Stream    (Info)            returns (stream Chunk)    {}
+    rpc LocalOps  (LocalOperation)  returns (LocalOperation)  {}
+    rpc RemoteOps (RemoteOperation) returns (RemoteOperation) {}
+}
+
+message Info {
+    string   path   = 1;
+    int64    size   = 2;
+    string   md5    = 3;
+    enum State {
+        OK    = 0;
+        ERROR = 1;
+    }
+    State    state  = 4;
+    string   error  = 5;
+}
+
+message Filter {
+    string path_match  = 1;
+}
+
+message List {
+             Filter filter       = 1;
+             int64  snaphot_time = 2; // время на которое информация актуальна
+    repeated Info   files        = 3;
+             enum State {
+                 OK    = 0;
+                 RETRY = 1; // сервер не готов ответить
+                 ERROR = 2; // внутренняя ошибка сервера, сообщение в поле error
+             }
+             State  state        = 4;
+             string error        = 5;
+}
+
+message Chunk {
+    Info  file   = 1; // да, избыточная информация, но расчитываем что data >> info.
+    int64 offset = 2;
+    bytes data   = 3;
+}
+
+message LocalOperation {
+    enum Type {
+        DELETE = 0;
+        MOVE   = 1; // из file в dst_file
+        COPY   = 2; // из file в dst_file
+    }
+    Type     type       = 1;
+    Info     file       = 2;
+    Info     dst_file   = 3;
+    enum State {
+        OK    = 0;
+        ERROR = 1; // внутренняя ошибка сервера, сообщение в поле error
+    }
+    State    state      = 4;
+    string   error      = 5;
+}
+
+message RemoteOperation {
+    enum Type {
+        COPY_FROM = 0;
+    }
+    Type     type          = 1;
+    Info     to_file       = 2;
+    string   remote_server = 3;
+    int64    remote_port   = 4;
+    Info     remote_file   = 5;
+    enum State {
+        OK    = 0;
+        ERROR = 1; // внутренняя ошибка сервера, сообщение в поле error
+    }
+    State    state         = 6;
+    string   error         = 7;
+}

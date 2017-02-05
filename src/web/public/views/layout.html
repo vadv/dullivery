@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Dullivery admin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="stylesheet" href="/static/bootstrap.min.css" media="screen">
+    <link rel="stylesheet" href="/static/codemirror.css">
+    <link rel="stylesheet" href="/static/codemirror-theme-solarized.css">
+    <link rel="stylesheet" href="/static/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="/static/bootstrap-toggle.css">
+    <script src="/static/jquery-1.9.1.min.js"></script>
+    <script src="/static/moment.min.js"></script>
+    <script src="/static/bootstrap.min.js"></script>
+    <script src="/static/codemirror.js"></script>
+    <script src="/static/codemirror-mode-lua.js"></script>
+    <script src="/static/bootstrap-datetimepicker.min.js"></script>
+    <script src="/static/bootstrap-toggle.js"></script>
+    <script src="/static/bootstrap-notify.min.js"></script>
+    <script src="/static/jquery.cookie.js"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-default">
+        <div class="container">
+            <div class="navbar-header">
+                <a href="#" class="navbar-brand">Dullivery</a>
+                <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="navbar-collapse collapse" id="navbar-main">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="download">Сценарии <span class="caret"></span></a>
+                        <ul class="dropdown-menu" aria-labelledby="download">
+                            <li><a href="/scenarios">Список</a></li>
+                            <li class="divider"></li>
+                            <li><a href="/scenario/new">Новый</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="/tasks" id="tasks">Задачи <span class="caret"></span></a>
+                        <ul class="dropdown-menu" aria-labelledby="tasks">
+                            <li><a href="/tasks">Список</a></li>
+                            <li class="divider"></li>
+                            <li><a href="/task/new">Новая</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/config">Настройки</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="download">Пользователи <span class="caret"></span></a>
+                        <ul class="dropdown-menu" aria-labelledby="download">
+                            <li><a href="/users">Список</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="http://git.itv.rest.im/" target="_blank">Помощь</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        {% if template != "" %} {% include template %} {% endif %}
+    </div>
+</body>
+<script type="text/javascript">
+$(document).ready(function() {
+    if (typeof $.cookie("flash.text") != 'undefined') {
+        var flash_text = decodeURIComponent($.cookie("flash.text"));
+        var flash_type = decodeURIComponent($.cookie("flash.type"));
+        $.notify({
+            message: flash_text
+        }, {
+            type: flash_type
+        });
+        $.removeCookie("flash.text");
+        $.removeCookie("flash.type");
+    };
+});
+</script>
+</html>

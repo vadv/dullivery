@@ -1,0 +1,38 @@
+<div class="page-header">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 id="buttons">Задачи</h1>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-8">
+        <table class="table table-responsive ">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Статус</th>
+                    <th>Запланировано</th>
+                    <th>Операции</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for task in Storage.Tasks.Limit(100) %}
+                <tr>
+                    <td> <a class="btn btn-xs btn-{{ task.State.Html() }}" href="/task_log/{{ task.Id }}">Задание #{{ task.Id }}</a></td>
+                    <td> <strong>{{ task.State.Human() }}</strong> </td>
+                    <td> <strong>{{ task.StartAt.Human() }}</strong> </td>
+                    <td>
+                        {% if Storage.Task.IsExecuted() %}
+                        <a class="btn btn-primary" href="/task_log/{{ task.Id }}"><strong>Лог</strong></a>
+                            {% else %}
+                        <a class="btn btn-primary btn-xs" href="/task/edit/{{ task.Id }}"><strong>Редактировать</strong></a>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>

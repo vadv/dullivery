@@ -1,0 +1,38 @@
+<script type="text/javascript">
+window.onload = function() {
+
+    CodeMirror.fromTextArea(document.getElementById("code"), {
+        lineNumbers: true,
+        matchBrackets: true,
+        theme: "solarized ligth",
+        mode: "text/x-lua",
+        indentUnit: 4, // Длина отступа в пробелах.
+        indentWithTabs: true,
+    });
+
+};
+</script>
+<div>
+    <h1>Сценарий № {{ data.Id }} </h1>
+</div>
+<div class="form-group">
+    <form class="form-horizontal" action="/scenario/edit/{{ data.Id }}" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <div class="col-lg-10">
+                <label for="row">Название и статус:</label>
+                <div class="row" id="row">
+                    <div class="col-xs-8">
+                        <input type="text" class="form-control" id="name" name="name" value="{{ data.Name }}">
+                    </div>
+                    <div class="col-xs-2">
+                        <input type="checkbox" data-toggle="toggle" id="active" name="active" {% if data.Active %} checked {% endif %}>
+                    </div>
+                </div>
+                <label for="code">Сценарий:</label>
+                <textarea class="form-control" s rows="20" cols="80" name="code" id="code">{{ data.Content }}</textarea>
+            </div>
+        </div>
+        <input class="btn btn-warning" type="submit" value="Сохранить">
+        <a role="button" class="btn btn-default" a href="/scenarios">Отменить</a>
+    </form>
+</div>

@@ -1,0 +1,45 @@
+[submodule "src/github.com/dustin/go-humanize"]
+	path = src/github.com/dustin/go-humanize
+	url = http://github.com/dustin/go-humanize.git
+[submodule "src/github.com/golang/protobuf"]
+	path = src/github.com/golang/protobuf
+	url = http://github.com/golang/protobuf.git
+[submodule "src/github.com/secsy/goftp"]
+	path = src/github.com/secsy/goftp
+	url = http://github.com/secsy/goftp.git
+[submodule "src/golang.org/x/net"]
+	path = src/golang.org/x/net
+	url = https://go.googlesource.com/net
+[submodule "src/google.golang.org/grpc"]
+	path = src/google.golang.org/grpc
+	url = https://github.com/grpc/grpc-go.git
+[submodule "src/github.com/yuin/gopher-lua"]
+	path = src/github.com/yuin/gopher-lua
+	url = https://github.com/yuin/gopher-lua.git
+[submodule "src/golang.org/x/crypto"]
+	path = src/golang.org/x/crypto
+	url = https://go.googlesource.com/crypto
+[submodule "src/github.com/valyala/fasttemplate"]
+	path = src/github.com/valyala/fasttemplate
+	url = https://github.com/valyala/fasttemplate.git
+[submodule "src/github.com/mattn/go-isatty"]
+	path = src/github.com/mattn/go-isatty
+	url = https://github.com/mattn/go-isatty.git
+[submodule "src/github.com/mattn/go-colorable"]
+	path = src/github.com/mattn/go-colorable
+	url = https://github.com/mattn/go-colorable.git
+[submodule "src/github.com/labstack/gommon"]
+	path = src/github.com/labstack/gommon
+	url = https://github.com/labstack/gommon.git
+[submodule "src/github.com/labstack/echo"]
+	path = src/github.com/labstack/echo
+	url = https://github.com/labstack/echo.git
+[submodule "src/github.com/dgrijalva/jwt-go"]
+	path = src/github.com/dgrijalva/jwt-go
+	url = https://github.com/dgrijalva/jwt-go.git
+[submodule "src/github.com/flosch/pongo2"]
+	path = src/github.com/flosch/pongo2
+	url = https://github.com/flosch/pongo2.git
+[submodule "src/github.com/jlaffaye/ftp"]
+	path = src/github.com/jlaffaye/ftp
+	url = https://github.com/jlaffaye/ftp.git

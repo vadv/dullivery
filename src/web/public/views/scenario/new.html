@@ -1,0 +1,40 @@
+<script type="text/javascript">
+window.onload = function() {
+
+    CodeMirror.fromTextArea(document.getElementById("code"), {
+        lineNumbers: true,
+        matchBrackets: true,
+        theme: "solarized ligth",
+        mode: "text/x-lua",
+        indentUnit: 4, // Длина отступа в пробелах.
+        indentWithTabs: true,
+    });
+
+};
+</script>
+<div>
+    <h1>Новый сценарий</h1>
+    <p class="lead">Lua-скрипт, который будет выполняться в цикле.</p>
+</div>
+<div class="form-group">
+    <form class="form-horizontal" action="/scenarios/new" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <div class="col-lg-10">
+                <label for="row">Название и статус:</label>
+                <div class="row" id="row">
+                    <div class="col-xs-8">
+                        <input type="text" class="form-control" id="name" name="name">
+                    </div>
+                    <div class="col-xs-4">
+                        <input type="checkbox" data-toggle="toggle" id="active" name="active">
+                    </div>
+                </div>
+                <label for="code">Сценарий:</label>
+                <textarea class="form-control" s rows="20" cols="80" name="code" id="code"></textarea>
+                </p>
+            </div>
+        </div>
+        <input class="btn btn-warning" type="submit" value="Сохранить">
+        <a role="button" class="btn btn-default" a href="/scenarios">Отменить</a>
+    </form>
+</div>

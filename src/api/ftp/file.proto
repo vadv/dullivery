@@ -1,0 +1,46 @@
+syntax = "proto3";
+
+package ftp;
+
+service File {
+    rpc Find     (Filter) returns (List) {}
+    rpc Download (Info)   returns (Info) {}
+    rpc Upload   (Info)   returns (Info) {}
+    rpc Delete   (Info)   returns (Info) {}
+}
+
+message Conn {
+    string host     = 1;
+    string user     = 2;
+    string password = 3;
+}
+
+message Info {
+    Conn   connection = 1;
+    string path       = 2;
+    string local_path = 3;
+    int64  size       = 4;
+    int64  mod_time   = 5;
+    enum State {
+        OK    = 0;
+        ERROR = 1;
+    }
+    State    state    = 6;
+    string   error    = 7;
+}
+
+message Filter {
+    Conn   connection = 1;
+    string path_match = 2;
+}
+
+message List {
+    repeated Info   files        = 1;
+             enum State {
+                 OK    = 0;
+                 ERROR = 1;
+             }
+             State  state        = 2;
+             string error        = 3;
+}
+

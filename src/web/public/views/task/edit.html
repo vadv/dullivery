@@ -1,0 +1,64 @@
+<script>
+function deleteTask(f) {
+    if (confirm("Вы уверены, что хотите удалить таск?"))
+        f.submit();
+}
+</script>
+
+<script>
+window.onload = function() {
+
+    CodeMirror.fromTextArea(document.getElementById("code"), {
+        lineNumbers: true,
+        matchBrackets: true,
+        theme: "solarized ligth",
+        mode: "text/x-lua",
+        indentUnit: 4, // Длина отступа в пробелах.
+        indentWithTabs: true,
+    });
+
+};
+</script>
+
+<div>
+    <h1>Задание №{{ data.Id }}</h1>
+    <p class="lead">Lua-скрипт, который будет запланирован на выполнение (Внимание: UTC!).</p>
+</div>
+
+<input type="hidden" id="dateStartAt" value="{{ data.StartAt }}" />
+<div class="form-group">
+    <form class="form-horizontal" action="/task/edit/{{ data.Id }}" method="post" enctype="multipart/form-data" onsubmit="deleteTask(this);return false;>
+        <div class=" form-group">
+            <div class="col-lg-10">
+                <textarea class="form-control"s rows="20" cols="80" name="content" id="code">{{ data.Content }}</textarea>
+            </div>
+
+        </div>
+        <div class='col-sm-4'>
+            <div class="form-group">
+                <div class='input-group date' id='datetimepicker'>
+                    <input type='text' name="date" class="form-control" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class='col-sm-6'>
+            <div class="btn-group btn-group">
+                <input class="btn btn-warning" type="submit" value="Сохранить">
+                <a role="button" class="btn btn-default" a href="/tasks">Отменить изменения</a>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script type="text/javascript">
+    var startDate = new Date(Number($('#dateStartAt').val())*1000);
+    $("#datetimepicker").datetimepicker({
+        format: 'DD/MM/YYYY HH:00',
+//        locale: 'ru',
+//        minDate: new Date(),
+        defaultDate: startDate
+    });
+</script>
